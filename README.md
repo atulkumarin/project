@@ -13,25 +13,26 @@ been collecting Trump's twitters since 2009 but the main focus in this project w
 
 
 ## Research Questions
-- **What are the main topics?**
+- **How linguistic tones create an impact?**
+
+   Sentiment Analysis - breaking down tweets into positive, neutral and negative remarks to figure out how Trump uses language to create an impact. This might also extend to recording the use of exclamation marks and capitalised words to measure the unambiguity of the tweet emotion.
+   Ego Analysis - finding occurences involving the use of self to promote an idea/situation. This might give us important insights about the impact of his tweets.
    
-   The tweets will be split into clusters based on its main topic. The cluster might be extract by a heuristic logic
-    based on a descriptive analysis of tweets or by 
-    [Latent Dirichlet allocation (LDA)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)if is feasiable.
+- **Is it okay to generalize the sentiments based on ALL the tweets?**
+
+   Source Anaylsis - almost all major political players have an additional media team who handle their Twitter Account. Same can be said about Trump. We can analyze the metadata to find out if the tweet has been sent out by the media team or Trump himself. For example, we can have a look at the source of the tweet. (sent by iPhone/Android). This can help us in analyzing the tweets in a better way.
+
+- **Is it all about the timing?**
+
+   Temporal Analysis - this involves a broad spectrum of topics, ranging from analyzing Trump's favorite time of the day to tweet vs its impact to how his number of followers get affected as an aftermath of a sensational tweet and in general, analyzing the changing preference of voters through time.
    
-- **How is the impact of each topic over time?**
+- **What are the distinct themes across tweets?**
+   
+   Clustering Analysis - the tweets will be split into clusters based on its main topic. The cluster might be extracted by a heuristic logic based on a descriptive analysis of tweets or by [Latent Dirichlet allocation (LDA)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) if it is feasible. We can then perform aforementioned temporal analysis for each topic.
+   
+- **Does location matter?** 
 
-    Based on the topic's cluster, the idea is analyse how much retweets and likes each topic has over time.  
-
-- **How is the impact of each topic by geolocation?** 
-
-    Based on the topic's cluster, the idea is analyse how much retweets and likes each topic has by geolocation.
-
-- **Sentimental analysis over time of the tweets**
-    
-    Construct a score for each tweets and topics based on the amount of positive and negative words. To develop it, 
-    a dataset of word's scores will be needed and better description can be found in [`Dataset`](#Dataset).
-
+    Spatial Analysis - based on the topic's cluster, the idea is to analyse how much retweets and likes each topic has by geolocation.
 
 ## Dataset 
 The main dataset with all tweets posted by Trump is available [here](https://github.com/bpb27/trump_tweet_data_archive) 
