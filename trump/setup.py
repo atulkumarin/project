@@ -13,7 +13,9 @@ setup(name='trump',
           'pandas==0.20.3',
           'pytest==3.2.2',
           'docopt==0.6.2',
-          'nltk==3.2.5'
+          'nltk==3.2.5',
+          'profanity==1.1',
+          'emoji==0.4.5'
       ],
       include_package_data=True,
       zip_safe=False)

@@ -39,6 +39,7 @@ def load_tweets():
     df[df['created_at'] >= datetime(2017, 4, 30)]
 
     df['weekday'] = df['created_at'].dt.weekday_name
+    df['weekday_number'] = df['created_at'].dt.weekday
     df['month_cohort'] = df['created_at'].dt.strftime('%Y-%m')
     df['first_day_month_cohort'] = pd.to_datetime(df['month_cohort'])
     df['quarter_cohort'] = pd.PeriodIndex(df['created_at'], freq='Q')
