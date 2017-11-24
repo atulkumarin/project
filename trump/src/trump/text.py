@@ -63,6 +63,9 @@ def remove_stop_words(series):
     regex_stop = re.compile(r'\b(' + r'|'.join(stopwords.words('english')) + r')\b\s*')
     series = series.str.replace(regex_stop, '')
     series = series.str.replace('realdonaldtrump', '')
+    series = series.str.replace('thank', '')
+    series = series.str.replace('trump', '')
+    series = series.str.replace('donald', '')
 
     return series
 
