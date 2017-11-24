@@ -5,7 +5,7 @@ from functools import reduce
 from bs4 import BeautifulSoup
 
 DATA_FOLDER = os.path.join(os.path.abspath(os.path.join(__file__, '../../../..')))
-YEARS = ['2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009']
+YEARS = ['2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009']
 COLS = ['id', 'created_at', 'favorite_count','lang', 'place.country', 'place.name', 'geo.coordinates',
         'coordinates.coordinates', 'retweet_count', 'user.id', 'user.followers_count', 'user.location',
         'source', 'text'
