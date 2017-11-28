@@ -4,7 +4,7 @@ from nltk.corpus import stopwords
 from profanity import profanity
 import emoji
 
-nltk.download('stopwords');
+nltk.download('stopwords')
 
 
 def preprocessing_text(series):
@@ -66,6 +66,7 @@ def remove_stop_words(series):
     series = series.str.replace('thank', '')
     series = series.str.replace('trump', '')
     series = series.str.replace('donald', '')
+    series = series.str.replace('amp', '')
 
     return series
 
