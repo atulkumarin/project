@@ -1,9 +1,12 @@
 import os
 import json
+import re
 import pandas as pd
 from functools import reduce
 from bs4 import BeautifulSoup
 from datetime import datetime
+from profanity import profanity
+import emoji
 
 DATA_FOLDER = os.path.join(os.path.abspath(os.path.join(__file__, '../../../..')))
 YEARS = ['2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009']
@@ -46,5 +49,31 @@ def load_tweets():
     df['is_weekend'] = df['weekday'].apply(lambda x: x in ['Saturday', 'Sunday'])
 
     df['source'] = (df['source'].apply(lambda x: BeautifulSoup(x, 'html.parser').find_all('a')[0].text))
+
+    df['count_url'] = df['text'].str.count('http')
+    df['count_!'] = df['text'].str.count('!')
+    df['count_?'] = df['text'].str.count('\?')
+    df['count_#'] = df['text'].str.count('#')
+    df['count_words'] = df['text'].str.split().str.len()
+
+    df['has_url'] = df['count_url'] > 0
+    df['has_!'] = df['count_!'] > 0
+    df['has_?'] = df['count_?'] > 0
+    df['has_#'] = df['count_#'] > 0
+
+    # emojis
+    emojis_list = map(lambda x:
+                  ''.join(x.split()), emoji.UNICODE_EMOJI.keys())
+    regex_emojis = re.compile('|'.join(re.escape(p)
+                                   for p in emojis_list))
+    df['count_emojis'] = df['text'].str.count(regex_emojis)
+
+    # bad words
+    regex_bad = re.compile('|'.join(re.escape(p)
+                                    for p in profanity.get_words()))
+
+    df['count_profanity'] = df['text'].str.count(regex_bad)
+
+    df['has_emojis'] = df['count_emojis'] > 0
 
     return df
