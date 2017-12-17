@@ -1,26 +1,24 @@
 import re
 import nltk
+import string
+from functools import partial
+import pandas as pd
+from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from profanity import profanity
-import emoji
+from nltk import pos_tag
+
+nltk.download('averaged_perceptron_tagger')
 
 nltk.download('stopwords')
 
 
-def preprocessing_text(series):
+def preprocess_contractions(series):
     """
-    Clean elements of a series of string
-
-    Parameters
-    ----------
-    series : series of strings
-
-    Returns
-    -------
-    series with treated text
-
+    Clean abbreviations from english
+    :param series: series with tweets text
+    :return: series with replaced values
     """
-    series = series.str.lower()
+    # series = series.str.lower()
 
     series = series.str.replace('<user>', '')
     series = series.str.replace('<url>', '')
@@ -49,16 +47,9 @@ def preprocessing_text(series):
 
 def remove_stop_words(series):
     """
-    Remove stop words from a series of string
-
-    Parameters
-    ----------
-    series : series of strings
-
-    Returns
-    -------
-    series without stop words
-
+    Remove stop words
+    :param series: series with tweets text
+    :return: string series wihtout stop words
     """
     regex_stop = re.compile(r'\b(' + r'|'.join(stopwords.words('english')) + r')\b\s*')
     series = series.str.replace(regex_stop, '')
@@ -71,40 +62,98 @@ def remove_stop_words(series):
     return series
 
 
-def features_eng(df):
+def cleaner_text(to_lower, remove_punct, txt):
     """
-    Apply feature enginneing
-
-    Parameters
-    ----------
-    dataframe : dataframe with columns of treated_text and clean_text
-
-    Returns
-    -------
-    dataframe with feature enginnering (basic counts)
-
+    Remove customized stop words, transform to lower, remove digit and remove punctuation
+    :param to_lower: boolean
+    :param remove_punct: boolean
+    :param txt: string with txt
+    :return: filtered list of tokens
     """
-    df['count_user'] = df['raw_tweet'].str.count('<user>')
-    df['count_url'] = df['raw_tweet'].str.count('<url>')
-    df['count_!'] = df['raw_tweet'].str.count('!')
-    df['count_?'] = df['raw_tweet'].str.count('\?')
-    df['count_#'] = df['raw_tweet'].str.count('#')
-    #     df['count_tsk'] = df['raw_tweet'].str.count('tsk')
-    df['count_<3'] = df['raw_tweet'].str.count('<3')
-    df['count_lol'] = df['raw_tweet'].str.count('lol')
-    df['count_words'] = df['clean_tweet'].str.split().str.len()
+    txt = word_tokenize(txt)
 
-    # emojis
-    emojis_list = map(lambda x:
-                      ''.join(x.split()), emoji.UNICODE_EMOJI.keys())
-    regex_emojis = re.compile('|'.join(re.escape(p)
-                                       for p in emojis_list))
-    df['count_emojis'] = df['raw_tweet'].str.count(regex_emojis)
+    TRUMP_STOPWORDS = ['realdonaldtrump', 'thank', 'trump', 'donald', 'amp', '&amp', '&amp;']
+    stop_words = stopwords.words('english') + TRUMP_STOPWORDS
 
-    # bad words
-    regex_bad = re.compile('|'.join(re.escape(p)
-                                    for p in profanity.get_words()))
+    punctuation = list(string.punctuation) + list('“’—.”’“--,”') + ['...', '``']
 
-    df['count_profanity'] = df['clean_tweet'].str.count(regex_bad)
+    if to_lower and remove_punct:
+        return [t.lower() for t in txt if
+                t.lower() not in stop_words and t.lower() not in punctuation and not t.isdigit()]
+
+    elif to_lower:
+        return [t.lower() for t in txt if t.lower() not in stop_words and not t.isdigit()]
+
+    elif remove_punct:
+        return [t for t in txt if t.lower() not in stop_words and t.lower() not in punctuation and not t.isdigit()]
+
+    return [t for t in txt if t.lower() not in stop_words and not t.isdigit()]
+
+
+def clean_series(series, to_lower=True, remove_punct=True):
+    """
+    :param series: series with tweets text
+    :param to_lower: boolean
+    :param remove_punct: boolean
+    :return: 2 series, one with filtered tokens and other with filtered text
+    """
+    fn = partial(cleaner_text, to_lower, remove_punct)
+    clean_tokens = series.apply(fn)
+    clean_text = clean_tokens.apply(lambda x: ' '.join(x))
+
+    return clean_tokens, clean_text
+
+
+def count_tags(tokens_series):
+    """
+    Function classify token in (verb, adj, adv, noun)
+    :param tokens_series: series of tokens
+    :return: dataframe with token classified and proportion of each category
+    """
+
+    def lookup_type_word(type_word):
+        if type_word.startswith('J'):
+            return 'adj'
+        elif type_word.startswith('V'):
+            return 'verb'
+        elif type_word.startswith('N'):
+            return 'noun'
+        elif type_word.startswith('R'):
+            return 'adv'
+        else:
+            return None
+
+    tags_series = tokens_series.apply(lambda tokens: list(map(lambda t:
+                                                              lookup_type_word(t[1]),
+                                                              pos_tag(tokens))))
+
+    prop_verbs = (tags_series
+                  .apply(lambda tag:
+                         len([x for x in tag if x == 'verb']) / len(tag) if len(tag) > 0 else 0))
+
+    prop_adj = (tags_series
+                .apply(lambda tag: len([x for x in tag if x == 'adj']) / len(tag) if len(tag) > 0 else 0))
+
+    prop_adv = (tags_series
+                .apply(lambda tag: len([x for x in tag if x == 'adv']) / len(tag) if len(tag) > 0 else 0))
+
+    prop_noun = (tags_series
+                 .apply(lambda tag: len([x for x in tag if x == 'noun']) / len(tag) if len(tag) > 0 else 0))
+
+    return pd.DataFrame({'tags': tags_series,
+                         'prop_verbs': prop_verbs,
+                         'prop_adj': prop_adj,
+                         'prop_adv': prop_adv,
+                         'prop_noun': prop_noun})
+
+
+def get_hardcoded_subjects(df):
+    df['hillary'] = (
+    df['clean_text'].str.contains('hillary') | df['clean_text'].str.contains('hilary') | df['clean_text'].str.contains(
+        'clinton'))
+    df['obama'] = df['clean_text'].str.contains('obama')
+    df['make_america'] = (df['text'].str.lower().str.contains('great again') | df['text'].str.contains('GreatAgain'))
+    df['war'] = df['clean_text'].str.contains('war')
+    df['democra'] = df['clean_text'].str.contains('democra')
 
     return df
