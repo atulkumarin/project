@@ -12,6 +12,46 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
 
 
+def preprocessing_text(series):
+    """
+    Clean elements of a series of string
+
+    Parameters
+    ----------
+    series : series of strings
+
+    Returns
+    -------
+    series with treated text
+
+    """
+    series = series.str.lower()
+
+    series = series.str.replace('<user>', '')
+    series = series.str.replace('<url>', '')
+
+    series = series.str.replace('n\'t', 'not')
+    series = series.str.replace('i\'m', 'i am')
+    series = series.str.replace('\'re', ' are')
+    series = series.str.replace('it\'s', 'it is')
+    series = series.str.replace('that\'s', 'that is')
+    series = series.str.replace('\'ll', ' will')
+    series = series.str.replace('\'l', ' will')
+    series = series.str.replace('\'ve', ' have')
+    series = series.str.replace('\'d', ' would')
+    series = series.str.replace('he\'s', 'he is')
+    series = series.str.replace('she\'s', 'she is')
+    series = series.str.replace('what\'s', 'what is')
+    series = series.str.replace('who\'s', 'who is')
+    series = series.str.replace('could\'ve', 'could have')
+    series = series.str.replace('\'s', '')
+
+    regex_letters = re.compile(r"[^\w\d\s]")
+    series = series.str.replace(regex_letters, '')
+
+    return series
+
+
 def preprocess_contractions(series):
     """
     Clean abbreviations from english
@@ -149,8 +189,9 @@ def count_tags(tokens_series):
 
 def get_hardcoded_subjects(df):
     df['hillary'] = (
-    df['clean_text'].str.contains('hillary') | df['clean_text'].str.contains('hilary') | df['clean_text'].str.contains(
-        'clinton'))
+        df['clean_text'].str.contains('hillary') | df['clean_text'].str.contains('hilary') | df[
+            'clean_text'].str.contains(
+            'clinton'))
     df['obama'] = df['clean_text'].str.contains('obama')
     df['make_america'] = (df['text'].str.lower().str.contains('great again') | df['text'].str.contains('GreatAgain'))
     df['war'] = df['clean_text'].str.contains('war')
