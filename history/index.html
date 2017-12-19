@@ -26,100 +26,112 @@
         </div>
 
         <p>Twitter plays a crucial role in politics these days. Gone are the days of door-to-door campaigning and trying
-    to reach the last man. Today, power is weilded by those who can tweet. A carefully worded 140 character
-    phrase carries the ability to swing states and potentially change the course of an entire nation. The goal
-    of our project is to analyse the impact of Twitter on society and understand how ideas are spread across a
-    network.</p>
+            to reach the last man. Today, power is weilded by those who can tweet. A carefully worded 140 character
+            phrase carries the ability to swing states and potentially change the course of an entire nation. The goal
+            of our project is to analyse the impact of Twitter on society and understand how ideas are spread across a
+            network.</p>
 
-<p>In order to investigate this question, our proposal is to analyse the tweets posted by Trump on Twitter over
-    time to discover what was the main focus of his campaign, how it changed and how the society reacts to his
-    discourses and proposals.</p>
+        <p>In order to investigate this question, our proposal is to analyse the tweets posted by Trump on Twitter over
+            time to discover what was the main focus of his campaign, how it changed and how the society reacts to his
+            discourses and proposals.</p>
 
-<p>The <a href="http://www.trumptwitterarchive.com/">Trump Twitter Archive</a> is a project that has been
-    collecting Trump's tweets since 2009 but the main focus of this project will be the period of his campaign.
-</p>
+        <p>The <a href="http://www.trumptwitterarchive.com/">Trump Twitter Archive</a> is a project that has been
+            collecting Trump's tweets since 2009 but the main focus of this project will be the period of his campaign.
+        </p>
 
-<h3>
-    Data Overview
-</h3>
+        <h3>
+            Data Overview
+        </h3>
 
-<p>Twitter API provides information about tweets in JSON formart and in order to see which field means it is
-    possible consult the twitter's documentation available
-    <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object">here</a>.
-    In this analysis the main fields that will be used are
-    <i>{ text, created_at, source, retweet_count, favorite_count}</i>.
-    The fields <i>{ coordinates, place }</i> weren't used due to the high level of missingness.
-</p>
+        <p>Twitter API provides information about tweets in JSON formart and in order to see which field means it is
+            possible consult the twitter's documentation available
+            <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object">here</a>.
+            In this analysis the main fields that will be used are
+            <i>{ text, created_at, source, retweet_count, favorite_count}</i>.
+            The fields <i>{ coordinates, place }</i> weren't used due to the high level of missingness.
+        </p>
 
-<p>
-    The number of tweets aggregated by month is given in the chart below.
-</p>
+        <p>
+            The number of tweets aggregated by month is given in the chart below.
+        </p>
 
-<img src="figures/count_by_month.png" alt="Count By Month">
+        <img src="figures/count_by_month.png" alt="Count By Month">
 
-<span style="color: red">[PUT WHY HAPPENED IN END 2015]</span>
-<p>
-    Trump also tweets from different sources or devices and there is evidence that the style of tweet is
-    different by device, the analysis about it can be found in this
-    <a href="http://varianceexplained.org/r/trump-tweets/">blog post</a>. The volume of tweets over time can
-    be seen in the chart below.
-</p>
+        <span style="color: red">[PUT WHY HAPPENED IN END 2015]</span>
+        <p>
+            Trump also tweets from different sources or devices and there is evidence that the style of tweet is
+            different by device, the analysis about it can be found in this
+            <a href="http://varianceexplained.org/r/trump-tweets/">blog post</a>. The volume of tweets over time can
+            be seen in the chart below.
+        </p>
 
-<img src="figures/device_over_time.png" alt="Devices By Month">
+        <img src="figures/device_over_time.png" alt="Devices By Month">
 
-<p>
-    Nowadays the tweet's source are mainly <i>iPhone</i> and <i>Android</i> and
-    <a href="http://varianceexplained.org/r/trump-tweets/">David Robinson's analysis</a> infers that Trump
-    should be using <i>Android</i> and his team <i>iPhone</i>.
-</p>
+        <p>
+            Nowadays the tweet's source are mainly <i>iPhone</i> and <i>Android</i> and
+            <a href="http://varianceexplained.org/r/trump-tweets/">David Robinson's analysis</a> infers that Trump
+            should be using <i>Android</i> and his team <i>iPhone</i>.
+        </p>
 
-The volume of tweets in one day of weekend is around 40% lower than during any working day. The number of
-retweets is also about the same as can be seems in the picture below, so the impact of a tweet seems to be not
-correlated with weekend's days.
-<img src="figures/retweets_by_dayofweek.png" alt="Devices By Month">
+        The volume of tweets in one day of weekend is around 40% lower than during any working day. The number of
+        retweets is also about the same as can be seems in the picture below, so the impact of a tweet seems to be not
+        correlated with weekend's days.
+        <img src="figures/retweets_by_dayofweek.png" alt="Devices By Month">
 
-<p>
-    If instead of retweets we look the favorited counting, it has the same behavior and the spearman correction
-    between retweets amount and favorited is about 87%.
-</p>
+        <p>
+            If instead of retweets we look the favorited counting, it has the same behavior and the spearman correction
+            between retweets amount and favorited is about 87%.
+        </p>
 
-<h3>
-    Writing Style
-</h3>
+        <h3>
+            Writing Style
+        </h3>
 
-<p>
-    The manner of expressing thoughts is characteristic of a person that can change over time and also with the
-    available resources to pass the message. Some example that might influenciate this behavior are: it is
-    easier take longer sentences when you tweet from a computer instead of your cellphone, twitter's box
-    is limited to 140 characters, depending on the historical moment more verbs are used instead of adjectives.
-</p>
+        <p>
+            The manner of expressing thoughts is characteristic of a person that can change over time and also with the
+            available resources to pass the message. Some example that might influenciate this behavior are: it is
+            easier take longer sentences when you tweet from a computer instead of your cellphone, twitter's box
+            is limited to 140 characters, depending on the historical moment more verbs are used instead of adjectives.
+        </p>
 
-<p>
-    The chart below shows over time the average of number of standards to express opinions / sentiments such as
-    <i>{ !, #, ?, url, emojis }</i> over time.
-</p>
+        <p>
+            The chart below shows over time the average of number of standards to express opinions / sentiments such as
+            <i>{ !, #, ?, url, emojis }</i> over time.
+        </p>
 
-<img src="figures/writing_style_over_time.png" alt="Writing style over time">
+        <img src="figures/writing_style_over_time.png" alt="Writing style over time">
 
-<p>
-    The only conclusion that it can be taken from this chart is that the amount of <i>urls</i> is followed by
-    the number of <i>#</i>, which might be reference to others.
-</p>
+        <p>
+            The only conclusion that it can be taken from this chart is that the amount of <i>urls</i> is followed by
+            the number of <i>#</i>, which might be reference to others.
+        </p>
 
-<p>
-    The same analysis over time was done with the amount of verbs, adjectives and adverbs extracted from the
-    module <i>pos_tag</i> from <i>nltk</i> library but the proportions are pretty constant over time.
-</p>
+        <p>
+            The same analysis over time was done with the amount of verbs, adjectives and adverbs extracted from the
+            module <i>pos_tag</i> from <i>nltk</i> library but the proportions are pretty constant over time.
+        </p>
 
 
-<p>
-    However when we look the writing style split by device it shows huge styling differences. The chart below
-    show metrics such as number of { <i>urls</i>, words, verbs, adjectives }. In android device almost there is
-    no <i>urls</i>, but the number of words and verbs are slightly higher than for other channels.
-</p>
-<img src="figures/writing_style_by_device.png" alt="Writing style over time">
-<li>Funny close words</li>
-<li>Cluster TNSE / isomap</li>
+        <p>
+            However when we look the writing style split by device it shows huge styling differences. The chart below
+            show metrics such as number of { <i>urls</i>, words, verbs, adjectives }. In android device almost there is
+            no <i>urls</i>, but the number of words and verbs are slightly higher than for other channels.
+        </p>
+        <img src="figures/writing_style_by_device.png" alt="Writing style over time">
+
+        <h3>
+            Word2Vec
+        </h3>
+
+        <span style="color: red">EXPLAIN WHAT THIS IS</span>
+        <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+        <script src="main.js"></script>
+        <p>
+            Try a word! Like "Hilary", "Obama", "Fake"...
+        </p>
+        <input type="text">
+
+
         <h3>
             Sentimental Analysis
         </h3>
@@ -268,70 +280,110 @@ correlated with weekend's days.
         <h3>
             Topic Modelling
         </h3>
-        
+
         <p>
-            Trump has had many phases in his life, ranging from being a judge at a reality T.V. show, to being the President of the United States of America. We thought, it would be an interesting exercise to figure out what were the major thematic elements in his tweets through the years. Given his vastly different backgrounds throughout the years, we hoped to find significant differences in the theme of his tweets. And we weren't surprised. The technique used for topic modelling is <a href = 'https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation'>Latent Dirichlet Allocation</a> (LDA). Others like <a href = 'https://en.wikipedia.org/wiki/Non-negative_matrix_factorization'>Non-Negative Matrix Factorization</a> (NMF) and <a href = 'https://en.wikipedia.org/wiki/Hierarchical_Dirichlet_process'>Hierarchical Dirichlet Process</a> (HDP), but LDA's perofrmance yielded the most coherent results.</p>
-        
+            Trump has had many phases in his life, ranging from being a judge at a reality T.V. show, to being the
+            President of the United States of America. We thought, it would be an interesting exercise to figure out
+            what were the major thematic elements in his tweets through the years. Given his vastly different
+            backgrounds throughout the years, we hoped to find significant differences in the theme of his tweets. And
+            we weren't surprised. The technique used for topic modelling is <a
+                href='https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation'>Latent Dirichlet Allocation</a> (LDA).
+            Others like <a href='https://en.wikipedia.org/wiki/Non-negative_matrix_factorization'>Non-Negative Matrix
+            Factorization</a> (NMF) and <a href='https://en.wikipedia.org/wiki/Hierarchical_Dirichlet_process'>Hierarchical
+            Dirichlet Process</a> (HDP), but LDA's perofrmance yielded the most coherent results.</p>
+
         <p>
-            LDA outputs most significant 'n' words for 'm' topics each. Both parameters are chosen by the user. Initially, we took all the tweets for creating the input courpus for LDA. The resulting output was missing some major tweet elements that Trump is known for. For example, 'Hillary Clinton', 'Immigration' were entirely missing!</p>
+            LDA outputs most significant 'n' words for 'm' topics each. Both parameters are chosen by the user.
+            Initially, we took all the tweets for creating the input courpus for LDA. The resulting output was missing
+            some major tweet elements that Trump is known for. For example, 'Hillary Clinton', 'Immigration' were
+            entirely missing!</p>
         <img src="figures/topic_full_corpus.png" alt="Incoherent Results with Full Corpus">
-        
+
         <p>
-            We thought it might be because of the huge time range that we have chosen. We narrowed down next to last three months before the election, when competition between Hillary and Trump as at its peak. And voila! The infamous <a href = 'https://twitter.com/realdonaldtrump/status/931877599034388480?lang=en'>Crooked Hillary</a>, <a href = 'https://twitter.com/realdonaldtrump/status/788928050008207360?lang=en'>BigLeagueTruth</a> and <a href = 'https://twitter.com/realdonaldtrump/status/788955427975393281?lang=en'>MAGA</a> make their appearance.</p>
+            We thought it might be because of the huge time range that we have chosen. We narrowed down next to last
+            three months before the election, when competition between Hillary and Trump as at its peak. And voila! The
+            infamous <a href='https://twitter.com/realdonaldtrump/status/931877599034388480?lang=en'>Crooked Hillary</a>,
+            <a href='https://twitter.com/realdonaldtrump/status/788928050008207360?lang=en'>BigLeagueTruth</a> and <a
+                href='https://twitter.com/realdonaldtrump/status/788955427975393281?lang=en'>MAGA</a> make their
+            appearance.</p>
         <img src="figures/topic_narrow_corpus.png" alt="Coherent Results with Full Corpus">
-        
+
         <p>
-            Better visualization technique for the entire corpus is to divide them into quarters for each year, and then have a look at the word-cloud for topic models. We will be visualizing both the word-cloud and the corresponding news stories from that period of time. <a href = 'https://news.google.com/news/?gl=US&ned=us&hl=en'>Google News</a> was used for the purpose of finding relevant news stories.</p>
+            Better visualization technique for the entire corpus is to divide them into quarters for each year, and then
+            have a look at the word-cloud for topic models. We will be visualizing both the word-cloud and the
+            corresponding news stories from that period of time. <a
+                href='https://news.google.com/news/?gl=US&ned=us&hl=en'>Google News</a> was used for the purpose of
+            finding relevant news stories.</p>
         <p>
             Topic Word-Cloud :</p>
         <img src="figures/wordcloud_by_topic.png" alt="Topics by Quarter">
-        
+
         <p>
-            After having a look at the word-cloud above, let's validate the results by looking at few news stories from those quarters :</p>
+            After having a look at the word-cloud above, let's validate the results by looking at few news stories from
+            those quarters :</p>
         <p></p>
         <figure>
-            <img src="figures/2017Q3.png" alt="2017 Q3" />
+            <img src="figures/2017Q3.png" alt="2017 Q3"/>
             <figcaption>2017 Third Quarter, Key words - FraudNews, FakeNews</figcaption>
         </figure>
         <p></p>
         <figure>
-            <img src="figures/2016Q4.png" alt="2016 Q4" />
+            <img src="figures/2016Q4.png" alt="2016 Q4"/>
             <figcaption>2016 Fourth Quarter, Key words - Big League Truth</figcaption>
         </figure>
         <p></p>
         <figure>
-            <img src="figures/2016Q1.png" alt="2016 Q1" />
+            <img src="figures/2016Q1.png" alt="2016 Q1"/>
             <figcaption>2016 First Quarter, Key words - Ted Cruz, Iowa</figcaption>
         </figure>
         <p></p>
         <figure>
-            <img src="figures/2015Q2.png" alt="2015 Q2" />
+            <img src="figures/2015Q2.png" alt="2015 Q2"/>
             <figcaption>2015 Second Quarter, Key words - O'Reilly Factor</figcaption>
         </figure>
-        
+
 
         <h3>
             Timing
         </h3>
-        
+
         <h4>
             Trump - The Night Owl
         </h4>
         <p>
-            Being an early riser has always been associated as a quality of success. While, yes, the early birds do catch some worms, night owls have perks of their own.</p>
-        <p> 
-            Trump, by his <a href = 'http://www.chicagotribune.com/lifestyles/ct-sleep-bragging-donald-trump-20151112-story.html'> own admission </a>, is a restless sleeper. But instead of twisting and turning in his bed to find just the right posture to sleep, he's more likely to indulge in some binge tweeting.</p>
+            Being an early riser has always been associated as a quality of success. While, yes, the early birds do
+            catch some worms, night owls have perks of their own.</p>
         <p>
-            Using the twitter archive, we have plotted some interesting results on his late-night rendezvous. First up, we have plotted the frequency of his late night tweeting, late-night being defined as the time between 0000 to 0359 hours. As is clearly visible the graph below, the he has been a consistent late-night tweeter since early 2014, where he either bragged about 'Celebrity Apprentice' or questioned Obama's tax reforms. Upon announcing his candidacy, he has been more involved in making incendiary remarks about his rivals in his late-night goofups.</p>
+            Trump, by his <a
+                href='http://www.chicagotribune.com/lifestyles/ct-sleep-bragging-donald-trump-20151112-story.html'> own
+            admission </a>, is a restless sleeper. But instead of twisting and turning in his bed to find just the right
+            posture to sleep, he's more likely to indulge in some binge tweeting.</p>
+        <p>
+            Using the twitter archive, we have plotted some interesting results on his late-night rendezvous. First up,
+            we have plotted the frequency of his late night tweeting, late-night being defined as the time between 0000
+            to 0359 hours. As is clearly visible the graph below, the he has been a consistent late-night tweeter since
+            early 2014, where he either bragged about 'Celebrity Apprentice' or questioned Obama's tax reforms. Upon
+            announcing his candidacy, he has been more involved in making incendiary remarks about his rivals in his
+            late-night goofups.</p>
         <img src="figures/timeline_latenight_tweetcount.png" alt="Trump's Late Nights On Twitter">
-        
+
         <p>
-            Another interesting visualization informs us about his diminishing early-morning posts. As compared to 2014 and 2015, 2016 was the year, where Trump decided to take it slow, making far less tweets past the 3:00 A.M. mark. Maybe the presidential campaigns grueling schedule tempered his infamous insomnia. The heatmap below shows tweet-timings for various days of the year, from <span style="background-color: #eca0a0">midnight</span> to <span style="background-color: #ee4c4c">3:59 A.M.</span></p>
+            Another interesting visualization informs us about his diminishing early-morning posts. As compared to 2014
+            and 2015, 2016 was the year, where Trump decided to take it slow, making far less tweets past the 3:00 A.M.
+            mark. Maybe the presidential campaigns grueling schedule tempered his infamous insomnia. The heatmap below
+            shows tweet-timings for various days of the year, from <span
+                style="background-color: #eca0a0">midnight</span> to <span
+                style="background-color: #ee4c4c">3:59 A.M.</span></p>
         <img src="figures/calendar_heatmap.png" alt="Over Three Years, Trump Often Stayed Up Late">
         <p>
-            And finally, a bit of thematic analysis on the tweet data, filtered down based on late-night time slot and Android device. The resulting word-cloud provides much more interesting insights on the kind of topics he preferred indulging late at night, revealing previously hidden 'top-words' like the infamous spat with Megyn Kelly, Sean Hannity, FoxNews etc. This resulting topic word cloud provides better insights mainly because we are narrowing down our timeframe (i.e. midnight, the time where Trump prefers to talk about topics he cares the most) and device (i.e. Android, from which Trump personally tweets).</p>
+            And finally, a bit of thematic analysis on the tweet data, filtered down based on late-night time slot and
+            Android device. The resulting word-cloud provides much more interesting insights on the kind of topics he
+            preferred indulging late at night, revealing previously hidden 'top-words' like the infamous spat with Megyn
+            Kelly, Sean Hannity, FoxNews etc. This resulting topic word cloud provides better insights mainly because we
+            are narrowing down our timeframe (i.e. midnight, the time where Trump prefers to talk about topics he cares
+            the most) and device (i.e. Android, from which Trump personally tweets).</p>
         <img src="figures/wordcloud_by_topic_latenight_filter.png" alt="What does Trump Talk About Late at Night?">
-        
+
         <ul>
             <li>Include charts in the exploratory analysis for day of week, etc.</li>
             <li>Charts - Quarter Cloud</li>
