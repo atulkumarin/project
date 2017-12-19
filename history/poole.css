@@ -455,3 +455,25 @@ a.pagination-item:hover {
     height: 40px;
     display: inline-block;
 }
+
+
+.search-box-wrapper {
+    display: inline-flex;
+    font-size: 20px;
+}
+
+
+.search-box-button {
+    border: 0.3em solid #ddd;
+    border-radius: 0.2em 0.2em;
+    padding: 0.2em 0.5em
+}
+
+.search-box-button {
+    font-size: inherit;
+    border: 0.3em solid #ddd;
+    border-radius: 0 0.2em 0.2em 0;
+    background-color: white;
+    border-left: 0;
+    padding: 0 0.75em;
+}
