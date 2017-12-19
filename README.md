@@ -1,11 +1,9 @@
 # Demystifying POTUS, one tweet at a time...
 
 ## Project 
-The history containing the principal analysis can be found [here](https://liabifano.github.io/project/history/)
+Final Data Story containing the principal analysis can be found [here](https://liabifano.github.io/project/history/)
 
-The analysis regarding the report milestone can be found [here](https://github.com/liabifano/project/blob/master/analysis/project-report.ipynb)
-
-The analysis regarding the milestone 2 can be found [here](https://github.com/liabifano/project/blob/master/analysis/Project-MileStone2-Updated.ipynb)
+The final notebook can be found [here](https://github.com/liabifano/project/blob/master/analysis/FinalNotebook.ipynb)
 
 ## Abstract
 Twitter plays a crucial role in politics these days. Gone are the days of door-to-door campaigning and trying to reach the last man. Today, power is weilded by those who can tweet. A carefully worded 140 character phrase carries the ability to swing states and potentially change the course of an entire nation. The goal of our project is to analyse the impact of Twitter on society and understand how ideas are spread across a network.
