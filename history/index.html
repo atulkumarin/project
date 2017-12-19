@@ -26,107 +26,115 @@
         </div>
 
         <p>Twitter plays a crucial role in politics these days. Gone are the days of door-to-door campaigning and trying
-            to reach the last man. Today, power is weilded by those who can tweet. A carefully worded 140 character
-            phrase carries the ability to swing states and potentially change the course of an entire nation. The goal
-            of our project is to analyse the impact of Twitter on society and understand how ideas are spread across a
-            network.</p>
+    to reach the last man. Today, power is weilded by those who can tweet. A carefully worded 140 character
+    phrase carries the ability to swing states and potentially change the course of an entire nation. The goal
+    of our project is to analyse the impact of Twitter on society and understand how ideas are spread across a
+    network.</p>
 
-        <p>In order to investigate this question, our proposal is to analyse the tweets posted by Trump on Twitter over
-            time to discover what was the main focus of his campaign, how it changed and how the society reacts to his
-            discourses and proposals.</p>
+<p>In order to investigate this question, our proposal is to analyse the tweets posted by Trump on Twitter over
+    time to discover what was the main focus of his campaign, how it changed and how the society reacts to his
+    discourses and proposals.</p>
 
-        <p>The <a href="http://www.trumptwitterarchive.com/">Trump Twitter Archive</a> is a project that has been
-            collecting Trump's tweets since 2009 but the main focus of this project will be the period of his campaign.
-        </p>
+<p>The <a href="http://www.trumptwitterarchive.com/">Trump Twitter Archive</a> is a project that has been
+    collecting Trump's tweets since 2009 but the main focus of this project will be the period of his campaign.
+</p>
 
-        <h3>
-            Data Overview
-        </h3>
+<h3>
+    Data Overview
+</h3>
 
-        <p>Twitter API provides information about tweets in JSON formart and in order to see which field means it is
-            possible consult the twitter's documentation available
-            <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object">here</a>.
-            In this analysis the main fields that will be used are
-            <i>{ text, created_at, source, retweet_count, favorite_count}</i>.
-            The fields <i>{ coordinates, place }</i> weren't used due to the high level of missingness.
-        </p>
+<p>Twitter API provides information about tweets in JSON formart and in order to see which field means it is
+    possible consult the twitter's documentation available
+    <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object">here</a>.
+    In this analysis the main fields that will be used are
+    <i>{ text, created_at, source, retweet_count, favorite_count}</i>.
+    The fields <i>{ coordinates, place }</i> weren't used due to the high level of missingness.
+</p>
 
-        <p>
-            The number of tweets aggregated by month is given in the chart below. It can be noticed that the year of
-            2017 have less tweets, probably this is due the dataset of 2017 is not closed yet and will be changed.
-            <span style="color: red">[SHOULD WE REMOVE 2017 FROM THIS CHART ????]</span>
-        </p>
+<p>
+    The number of tweets aggregated by month is given in the chart below.
+</p>
 
-        <img src="figures/count_by_month.png" alt="Count By Month">
+<img src="figures/count_by_month.png" alt="Count By Month">
 
-        <p>
-            Trump also tweets from different sources or devices and there is evidence that the style of tweet is
-            different by device, the analysis about it can be found in this
-            <a href="http://varianceexplained.org/r/trump-tweets/">blog post</a>. The volume of tweets over time can
-            be seen in the chart below.
-        </p>
+<span style="color: red">[PUT WHY HAPPENED IN END 2015]</span>
+<p>
+    Trump also tweets from different sources or devices and there is evidence that the style of tweet is
+    different by device, the analysis about it can be found in this
+    <a href="http://varianceexplained.org/r/trump-tweets/">blog post</a>. The volume of tweets over time can
+    be seen in the chart below.
+</p>
 
-        <img src="figures/device_over_time.png" alt="Devices By Month">
+<img src="figures/device_over_time.png" alt="Devices By Month">
 
-        <p>
-            Nowadays the tweet's source are mainly <i>iPhone</i> and <i>Android</i> and
-            <a href="http://varianceexplained.org/r/trump-tweets/">David Robinson's analysis</a> infers that Trump
-            should be using <i>Android</i> and his team <i>iPhone</i>.
-        </p>
+<p>
+    Nowadays the tweet's source are mainly <i>iPhone</i> and <i>Android</i> and
+    <a href="http://varianceexplained.org/r/trump-tweets/">David Robinson's analysis</a> infers that Trump
+    should be using <i>Android</i> and his team <i>iPhone</i>.
+</p>
 
-        <span style="color: red">[TALK ABOUT DAY OF WEEK]</span>
-        <img src="figures/retweets_by_dayofweek.png" alt="Devices By Month">
+The volume of tweets in one day of weekend is around 40% lower than during any working day. The number of
+retweets is also about the same as can be seems in the picture below, so the impact of a tweet seems to be not
+correlated with weekend's days.
+<img src="figures/retweets_by_dayofweek.png" alt="Devices By Month">
 
-        > Correlation spearman correlation between number retweets and favorite is 0.87.
+<p>
+    If instead of retweets we look the favorited counting, it has the same behavior and the spearman correction
+    between retweets amount and favorited is about 87%.
+</p>
 
-        <p>
-            Another hypothesis is if the subject / topics of his tweets change over time and the simplest thing that can
-            be done to have a feeling about which topics appears over time is a <i>word cloud</i>. The image below shows
-            the words that more appeared by quarter
-        </p>
+<p>
+    Another hypothesis is if the subject / topics of his tweets change over time and the simplest thing that can
+    be done to have a feeling about which topics appears over time is a <i>word cloud</i>. The image below shows
+    the words that more appeared by quarter
+</p>
 
-        <img src="figures/word_cloud_by_semestre.png" alt="Wordcloud by semestre">
+<img src="figures/word_cloud_by_semestre.png" alt="Wordcloud by semestre">
 
-        <p>
-            Before to plot <i>word cloud</i> it was removed stop words based on the <i>nltk</i> library, urls / links,
-            mentions to himself (there were a lot of those).
-            <span style="color: red">[THE SIZE OF THIS CHART IS WEIRD]</span>
-            <span style="color: red">[COMMENT THE  WORDS BY QUARTER]</span>
-        </p>
+<p>
+    Before to plot <i>word cloud</i> it was removed stop words based on the <i>nltk</i> library, urls / links,
+    mentions to himself (there were a lot of those).
+    <span style="color: red">[THE SIZE OF THIS CHART IS WEIRD]</span>
+    <span style="color: red">[COMMENT THE  WORDS BY QUARTER]</span>
+</p>
 
-        <h3>
-            Writing Style
-        </h3>
+<h3>
+    Writing Style
+</h3>
 
-        <p>
-            The manner of expressing thoughts is characteristic of a person that can change over time and also with the
-            available resources to pass the message. Some example that might influenciate this behavior are: it is
-            easier take longer sentences when you tweet from a computer instead of your cellphone, twitter's box
-            is limited to 140 characters, depending on the historical moment more verbs are used instead of adjectives.
-        </p>
+<p>
+    The manner of expressing thoughts is characteristic of a person that can change over time and also with the
+    available resources to pass the message. Some example that might influenciate this behavior are: it is
+    easier take longer sentences when you tweet from a computer instead of your cellphone, twitter's box
+    is limited to 140 characters, depending on the historical moment more verbs are used instead of adjectives.
+</p>
 
-        <p>
-            The chart below shows over time the average of number of standards to express opinions / sentiments such as
-            <i>{ !, #, ?, url, emojis }</i> over time.
-        </p>
+<p>
+    The chart below shows over time the average of number of standards to express opinions / sentiments such as
+    <i>{ !, #, ?, url, emojis }</i> over time.
+</p>
 
-        <img src="figures/writing_style_over_time.png" alt="Writing style over time">
+<img src="figures/writing_style_over_time.png" alt="Writing style over time">
 
-        <span style="color: red">[PUT ANALYSIS]</span>
+<p>
+    The only conclusion that it can be taken from this chart is that the amount of <i>urls</i> is followed by
+    the number of <i>#</i>, which might be reference to others.
+</p>
 
-        <p>
-            The same analysis over time was done with the amount of verbs, adjectives and adverbs extracted from the
-            module <i>pos_tag</i> from <i>nltk</i> library but the proportions are constant over time.
-        </p>
+<p>
+    The same analysis over time was done with the amount of verbs, adjectives and adverbs extracted from the
+    module <i>pos_tag</i> from <i>nltk</i> library but the proportions are pretty constant over time.
+</p>
 
-        <li>Chart number of words by device</li>
-        <img src="figures/chars_by_device.png" alt="Chars by Device">
 
-        <li>Chart style by device</li>
-        <img src="figures/writing_style_by_device.png" alt="Writing style over time">
-        <li>Funny close words</li>
-        <li>Cluster TNSE / isomap</li>
-
+<p>
+    However when we look the writing style split by device it shows huge styling differences. The chart below
+    show metrics such as number of { <i>urls</i>, words, verbs, adjectives }. In android device almost there is
+    no <i>urls</i>, but the number of words and verbs are slightly higher than for other channels.
+</p>
+<img src="figures/writing_style_by_device.png" alt="Writing style over time">
+<li>Funny close words</li>
+<li>Cluster TNSE / isomap</li>
         <h3>
             Sentimental Analysis
         </h3>
