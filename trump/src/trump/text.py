@@ -102,7 +102,7 @@ def remove_stop_words(series):
     return series
 
 
-def cleaner_text(to_lower, remove_punct, txt):
+def cleaner_text(to_lower, remove_punct, dont_remove_ego, txt):
     """
     Remove customized stop words, transform to lower, remove digit and remove punctuation
     :param to_lower: boolean
@@ -112,8 +112,12 @@ def cleaner_text(to_lower, remove_punct, txt):
     """
     txt = word_tokenize(txt)
 
-    TRUMP_STOPWORDS = ['realdonaldtrump', 'thank', 'trump', 'donald', 'amp', '&amp', '&amp;']
-    stop_words = stopwords.words('english') + TRUMP_STOPWORDS
+    if dont_remove_ego:
+        TRUMP_STOPWORDS = ['thank', 'amp', '&amp', '&amp;']
+        stop_words = [x for x in stopwords.words('english') if x not in ['i', 'me', 'my', 'myself']]+ TRUMP_STOPWORDS
+    else:
+        TRUMP_STOPWORDS = ['realdonaldtrump', 'thank', 'trump', 'donald', 'amp', '&amp', '&amp;']
+        stop_words = stopwords.words('english') + TRUMP_STOPWORDS
 
     punctuation = list(string.punctuation) + list('“’—.”’“--,”') + ['...', '``']
 
@@ -130,14 +134,14 @@ def cleaner_text(to_lower, remove_punct, txt):
     return [t for t in txt if t.lower() not in stop_words and not t.isdigit()]
 
 
-def clean_series(series, to_lower=True, remove_punct=True):
+def clean_series(series, to_lower=True, remove_punct=True, dont_remove_ego=False):
     """
     :param series: series with tweets text
     :param to_lower: boolean
     :param remove_punct: boolean
     :return: 2 series, one with filtered tokens and other with filtered text
     """
-    fn = partial(cleaner_text, to_lower, remove_punct)
+    fn = partial(cleaner_text, to_lower, remove_punct, dont_remove_ego)
     clean_tokens = series.apply(fn)
     clean_text = clean_tokens.apply(lambda x: ' '.join(x))
 
@@ -198,3 +202,16 @@ def get_hardcoded_subjects(df):
     df['democra'] = df['clean_text'].str.contains('democra')
 
     return df
+
+def get_ego_words(df, ego_word_list):
+    clean_tokens, clean_text = clean_series(df['text'], dont_remove_ego=True)
+    contains_ego_df = pd.DataFrame()
+    
+    for word in ego_word_list:
+        contains_ego_df[word] = clean_tokens.apply(lambda x: word in x)
+
+    #contains_i = clean_text.str.contains('i')
+    #contains_me = clean_text.str.contains('me')
+    #contains_myself =
+
+    return contains_ego_df 
