@@ -43,133 +43,220 @@
             Data Overview
         </h3>
 
-        <ul>
-            <li>Comments about data structure</li>
-            <li># of tweets per time chart</li>
-            <img src="figures/count_by_month.png" alt="Count By Month">
-            <li># tweets by device</li>
-            <img src="figures/device_over_time.png" alt="Devices By Month">
-            <li>Comments about day of week</li>
-            <li>Comments about day of week that is good to tweet</li>
-            <li>Word Cloud by semestre</li>
-            <img src="figures/word_cloud_by_semestre.png" alt="Wordcloud by semestre">
-        </ul>
+        <p>Twitter API provides information about tweets in JSON formart and in order to see which field means it is
+            possible consult the twitter's documentation available
+            <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object">here</a>.
+            In this analysis the main fields that will be used are
+            <i>{ text, created_at, source, retweet_count, favorite_count}</i>.
+            The fields <i>{ coordinates, place }</i> weren't used due to the high level of missingness.
+        </p>
+
+        <p>
+            The number of tweets aggregated by month is given in the chart below. It can be noticed that the year of
+            2017 have less tweets, probably this is due the dataset of 2017 is not closed yet and will be changed.
+            <span style="color: red">[SHOULD WE REMOVE 2017 FROM THIS CHART ????]</span>
+        </p>
+
+        <img src="figures/count_by_month.png" alt="Count By Month">
+
+        <p>
+            Trump also tweets from different sources or devices and there is evidence that the style of tweet is
+            different by device, the analysis about it can be found in this
+            <a href="http://varianceexplained.org/r/trump-tweets/">blog post</a>. The volume of tweets over time can
+            be seen in the chart below.
+        </p>
+
+        <img src="figures/device_over_time.png" alt="Devices By Month">
+
+        <p>
+            Nowadays the tweet's source are mainly <i>iPhone</i> and <i>Android</i> and
+            <a href="http://varianceexplained.org/r/trump-tweets/">David Robinson's analysis</a> infers that Trump
+            should be using <i>Android</i> and his team <i>iPhone</i>.
+        </p>
+
+        <span style="color: red">[TALK ABOUT DAY OF WEEK OR PUT A CHART]</span>
+
+        <p>
+            Another hypothesis is if the subject / topics of his tweets change over time and the simplest thing that can
+            be done to have a feeling about which topics appears over time is a <i>word cloud</i>. The image below shows
+            the words that more appeared by quarter
+        </p>
+
+        <img src="figures/word_cloud_by_semestre.png" alt="Wordcloud by semestre">
+
+        <p>
+            Before to plot <i>word cloud</i> it was removed stop words based on the <i>nltk</i> library, urls / links,
+            mentions to himself (there were a lot of those).
+            <span style="color: red">[THE SIZE OF THIS CHART IS WEIRD]</span>
+            <span style="color: red">[COMMENT THE  WORDS BY QUARTER]</span>
+        </p>
 
         <h3>
             Writing Style
         </h3>
 
-        <ul>
-            <li>Chart about count of !#url?</li>
-            <img src="figures/writing_style_over_time.png" alt="Writing style over time">
-            <li>Chart style by device</li>
-            <img src="figures/writing_style_by_device.png" alt="Writing style over time">
-            <li>Funny close words</li>
-            <li>Cluster TNSE / isomap</li>
-        </ul>
-        
+        <p>
+            The manner of expressing thoughts is characteristic of a person that can change over time and also with the
+            available resources to pass the message. Some example that might influenciate this behavior are: it is
+            easier take longer sentences when you tweet from a computer instead of your cellphone, twitter's box
+            is limited to 140 characters, depending on the historical moment more verbs are used instead of adjectives.
+        </p>
+
+        <p>
+            The chart below shows over time the average of number of standards to express opinions / sentiments such as
+            <i>{ !, #, ?, url, emojis }</i> over time.
+        </p>
+
+        <img src="figures/writing_style_over_time.png" alt="Writing style over time">
+
+        <span style="color: red">[PUT ANALYSIS]</span>
+
+        <p>
+            The same analysis over time was done with the amount of verbs, adjectives and adverbs extracted from the
+            module <i>pos_tag</i> from <i>nltk</i> library but the proportions are constant over time.
+        </p>
+
+        <li>Chart number of words by device <span style="color: red">[CREATE CHART]</span></li>
+
+        <li>Chart style by device</li>
+        <img src="figures/writing_style_by_device.png" alt="Writing style over time">
+        <li>Funny close words</li>
+        <li>Cluster TNSE / isomap</li>
+
         <h3>
             Sentimental Analysis
         </h3>
-        
+
         <p>Humans are "generally" sentimental and emotional beings. Analysing the sentiment of someone's tweets' could
-        	tell us a great deal about the general thought process of the person. Here, we will present an in-depth analysis
-        	of the sentiments expressed by Trump on Twitter.
+            tell us a great deal about the general thought process of the person. Here, we will present an in-depth
+            analysis
+            of the sentiments expressed by Trump on Twitter.
         </p>
-        	
+
         <p>
-        	Let us look at the distribution of the number of tweets classified based on the sentiments expressed in them. The
-        	raw sentiment scores lie between -1 and 1, with -1 denoting the most negative sentiment and vice versa.
+            Let us look at the distribution of the number of tweets classified based on the sentiments expressed in
+            them. The
+            raw sentiment scores lie between -1 and 1, with -1 denoting the most negative sentiment and vice versa.
         </p>
-        
+
         <img src="figures/sentiment_counts.png" alt="Tweet Count by Sentiment">
-        
-        <p>Although majority (~43%) of tweets have been classified as neutral, a significant (~20%) are negative. Let us look
-        at some of these tweets :</p>
-        
+
+        <p>Although majority (~43%) of tweets have been classified as neutral, a significant (~20%) are negative. Let us
+            look
+            at some of these tweets :</p>
+
         <div align='center'>
-        <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The FAKE &amp; FRAUDULENT NEWS MEDIA is working hard to convince Republicans and others I should not use social media - but remember, I won....</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/881271748280365056?ref_src=twsrc%5Etfw">July 1, 2017</a></blockquote>
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Watched low rated <a href="https://twitter.com/Morning_Joe?ref_src=twsrc%5Etfw">@Morning_Joe</a> for first time in long time. FAKE NEWS. He called me to stop a National Enquirer article. I said no! Bad show</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/880771685460344832?ref_src=twsrc%5Etfw">June 30, 2017</a></blockquote>
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
-		
-		While some of the positive ones are as follows :
-		
-		<div align='center'>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Just finished a very good meeting with the President of South Korea. Many subjects discussed including North Korea and new trade deal!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/880602793341591552?ref_src=twsrc%5Etfw">June 30, 2017</a></blockquote>
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Our new American Energy Policy will unlock MILLIONS of jobs &amp; TRILLIONS in wealth. We are on the cusp of a true energy REVOLUTION. <a href="https://t.co/Up9WkJnYgw">pic.twitter.com/Up9WkJnYgw</a></p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/880564232588107779?ref_src=twsrc%5Etfw">June 29, 2017</a></blockquote>
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The FAKE &amp; FRAUDULENT NEWS MEDIA
+                is working hard to convince Republicans and others I should not use social media - but remember, I
+                won....</p>&mdash; Donald J. Trump (@realDonaldTrump) <a
+                    href="https://twitter.com/realDonaldTrump/status/881271748280365056?ref_src=twsrc%5Etfw">July 1,
+                2017</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-		<p>
-		It would also be interesting to see the temporal pattern in the distribution of the number of tweets based on the sentiment
-		expressed in them.
-		</p>
-		
-		<img src="figures/sentiment_counts_quarter.png" alt="Tweet Count by Sentiment per quarter">
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Watched low rated <a
+                    href="https://twitter.com/Morning_Joe?ref_src=twsrc%5Etfw">@Morning_Joe</a> for first time in long
+                time. FAKE NEWS. He called me to stop a National Enquirer article. I said no! Bad show</p>&mdash; Donald
+                J. Trump (@realDonaldTrump) <a
+                        href="https://twitter.com/realDonaldTrump/status/880771685460344832?ref_src=twsrc%5Etfw">June
+                    30, 2017</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
 
-		<p>
-		While the number of tweets by Trump has decreased in general, the proportion of negative tweets has gone up, and more so,
-		after he was elected as the president. Let us now look at how these tweets were perceived by the public. We will use the
-		total number of retweets and likes (favorited) as a metric.
-		</p>
+        While some of the positive ones are as follows :
 
-		<img src="figures/sentiment_retweet_favorited.png" alt="Tweet Count by Sentiment per quarter">
-		
-		<img src="figures/sentiment_retweets_quarter.png" alt="Tweet Count by Sentiment per quarter">
-		
-		<p>
-		It is interesting to note that while the total number of negative tweets is only about ~20% in total, the number of retweets
-		and favorited/likes are almost similar across the three categories of sentiments. This could be indicative of the fact that people are
-		more gullible and supportive towards negative tweets by Trump.
-		</p>
-		
+        <div align='center'>
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Just finished a very good meeting
+                with the President of South Korea. Many subjects discussed including North Korea and new trade deal!</p>&mdash;
+                Donald J. Trump (@realDonaldTrump) <a
+                        href="https://twitter.com/realDonaldTrump/status/880602793341591552?ref_src=twsrc%5Etfw">June
+                    30, 2017</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Our new American Energy Policy will
+                unlock MILLIONS of jobs &amp; TRILLIONS in wealth. We are on the cusp of a true energy REVOLUTION. <a
+                        href="https://t.co/Up9WkJnYgw">pic.twitter.com/Up9WkJnYgw</a></p>&mdash; Donald J. Trump
+                (@realDonaldTrump) <a
+                        href="https://twitter.com/realDonaldTrump/status/880564232588107779?ref_src=twsrc%5Etfw">June
+                    29, 2017</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        <p>
+            It would also be interesting to see the temporal pattern in the distribution of the number of tweets based
+            on the sentiment
+            expressed in them.
+        </p>
+
+        <img src="figures/sentiment_counts_quarter.png" alt="Tweet Count by Sentiment per quarter">
+
+        <p>
+            While the number of tweets by Trump has decreased in general, the proportion of negative tweets has gone up,
+            and more so,
+            after he was elected as the president. Let us now look at how these tweets were perceived by the public. We
+            will use the
+            total number of retweets and likes (favorited) as a metric.
+        </p>
+
+        <img src="figures/sentiment_retweet_favorited.png" alt="Tweet Count by Sentiment per quarter">
+
+        <img src="figures/sentiment_retweets_quarter.png" alt="Tweet Count by Sentiment per quarter">
+
+        <p>
+            It is interesting to note that while the total number of negative tweets is only about ~20% in total, the
+            number of retweets
+            and favorited/likes are almost similar across the three categories of sentiments. This could be indicative
+            of the fact that people are
+            more gullible and supportive towards negative tweets by Trump.
+        </p>
+
         <h3>
             Source Analysis
         </h3>
-        
+
         <p>
-        	It is a well known fact that Trump's official Twitter handle @realDonaldTrump is also accessible by his
-        	media and other supporting teams. Trump has been personally known to use an "Android" phone while his team either uses
-        	the Twitter Web Client or an iPhone. Since the Twitter API allows us to differentiate between the "source" of a tweet, 
-        	it would be interesting to see if there are any differentiating patterns based on the source.
+            It is a well known fact that Trump's official Twitter handle @realDonaldTrump is also accessible by his
+            media and other supporting teams. Trump has been personally known to use an "Android" phone while his team
+            either uses
+            the Twitter Web Client or an iPhone. Since the Twitter API allows us to differentiate between the "source"
+            of a tweet,
+            it would be interesting to see if there are any differentiating patterns based on the source.
         </p>
-        
-        <p>Trump and his team have clearly used numerous devices/sources for connecting with the world on Twitter. Here is a
-        comprehensive list ordered according to total number of tweets originating from them : 
-        'Twitter for Android', 'Twitter Web Client', 'Twitter for iPhone',
-       'TweetDeck', 'TwitLonger Beta', 'Instagram', 'Facebook',
-       'Twitter for BlackBerry', 'Twitter Ads', 'Mobile Web (M5)',
-       'Twitlonger', 'Twitter for iPad', 'Media Studio', 'Twitter QandA',
-       'Vine - Make a Scene', 'Periscope', 'Neatly For BlackBerry 10',
-       'Twitter Mirror for iPad', 'Twitter for Websites'.
-       </p>
-        	
-        <p>Let us take a look at the active-ness of these different sources which can be quantified by the number of tweets in
-        	a given time period.</p> 
-        	
+
+        <p>Trump and his team have clearly used numerous devices/sources for connecting with the world on Twitter. Here
+            is a
+            comprehensive list ordered according to total number of tweets originating from them :
+            'Twitter for Android', 'Twitter Web Client', 'Twitter for iPhone',
+            'TweetDeck', 'TwitLonger Beta', 'Instagram', 'Facebook',
+            'Twitter for BlackBerry', 'Twitter Ads', 'Mobile Web (M5)',
+            'Twitlonger', 'Twitter for iPad', 'Media Studio', 'Twitter QandA',
+            'Vine - Make a Scene', 'Periscope', 'Neatly For BlackBerry 10',
+            'Twitter Mirror for iPad', 'Twitter for Websites'.
+        </p>
+
+        <p>Let us take a look at the active-ness of these different sources which can be quantified by the number of
+            tweets in
+            a given time period.</p>
+
         <img src="figures/device_over_time.png" alt="Devices By Month">
-        
+
         <p>"Twitter for Android" has been relatively the most active source from Q2 2013 to Q2 2016. Note that, Trump's
-        presidential campaign officially started in Q2 2015 and he won the election in Q4 2016.</p>
-        
-        <p>Since we are aware that Trump personally uses Android for tweeting, it would be interesting to analyse the statistics
-        of sentiments in tweets based on the source. 
-		</p>
-		
-		<img src="figures/sentiment_android_quarter.png" alt="Devices By Month">
-		
-		<img src="figures/sentiment_nonandroid_quarter.png" alt="Devices By Month">
-		
-		<p>
-		It is not surprising that compared sources other than itself, tweets from Android has greater proportion of negative
-		tweets.
-		</p>
-	
+            presidential campaign officially started in Q2 2015 and he won the election in Q4 2016.</p>
+
+        <p>Since we are aware that Trump personally uses Android for tweeting, it would be interesting to analyse the
+            statistics
+            of sentiments in tweets based on the source.
+        </p>
+
+        <img src="figures/sentiment_android_quarter.png" alt="Devices By Month">
+
+        <img src="figures/sentiment_nonandroid_quarter.png" alt="Devices By Month">
+
+        <p>
+            It is not surprising that compared sources other than itself, tweets from Android has greater proportion of
+            negative
+            tweets.
+        </p>
+
 
         <h3>
             Ego Analysis
@@ -191,7 +278,7 @@
             <li>Qualitative Textual Description</li>
         </ul>
 
-		<h3>
+        <h3>
             Timing
         </h3>
 
@@ -200,23 +287,33 @@
             <li>Charts - Quarter Cloud</li>
             <li>Qualitative Textual Description</li>
         </ul>
-        
+
         <h3>
             Bonus/Impact/Sensational (just a placeholder, need to put somewhere else)
         </h3>
 
         Most retweeted tweet :
         <div align='center'>
-        <blockquote class="twitter-tweet" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/hashtag/FraudNewsCNN?src=hash&amp;ref_src=twsrc%5Etfw">#FraudNewsCNN</a> <a href="https://twitter.com/hashtag/FNN?src=hash&amp;ref_src=twsrc%5Etfw">#FNN</a> <a href="https://t.co/WYUnHjjUjg">pic.twitter.com/WYUnHjjUjg</a></p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/881503147168071680?ref_src=twsrc%5Etfw">July 2, 2017</a></blockquote>
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="und" dir="ltr"><a
+                    href="https://twitter.com/hashtag/FraudNewsCNN?src=hash&amp;ref_src=twsrc%5Etfw">#FraudNewsCNN</a>
+                <a href="https://twitter.com/hashtag/FNN?src=hash&amp;ref_src=twsrc%5Etfw">#FNN</a> <a
+                        href="https://t.co/WYUnHjjUjg">pic.twitter.com/WYUnHjjUjg</a></p>&mdash; Donald J. Trump
+                (@realDonaldTrump) <a
+                        href="https://twitter.com/realDonaldTrump/status/881503147168071680?ref_src=twsrc%5Etfw">July 2,
+                    2017</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-        
+
         Most favorited tweet :
         <div align='center'>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Such a beautiful and important evening! The forgotten man and woman will never be forgotten again. We will all come together as never before</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/796315640307060738?ref_src=twsrc%5Etfw">November 9, 2016</a></blockquote>
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
-		
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Such a beautiful and important
+                evening! The forgotten man and woman will never be forgotten again. We will all come together as never
+                before</p>&mdash; Donald J. Trump (@realDonaldTrump) <a
+                    href="https://twitter.com/realDonaldTrump/status/796315640307060738?ref_src=twsrc%5Etfw">November 9,
+                2016</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
         <h3>
             Final Comments
         </h3>
