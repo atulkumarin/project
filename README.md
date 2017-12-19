@@ -1,6 +1,10 @@
 # Demystifying POTUS, one tweet at a time...
 
-## Project Miletone 2
+## Project 
+The history containing the principal analysis can be found [here](https://liabifano.github.io/project/history/)
+
+The analysis regarding the report milestone can be found [here](https://github.com/liabifano/project/blob/master/analysis/project-report.ipynb)
+
 The analysis regarding the milestone 2 can be found [here](https://github.com/liabifano/project/blob/master/analysis/Project-MileStone2-Updated.ipynb)
 
 ## Abstract
@@ -31,31 +35,20 @@ The [Trump Twitter Archive](http://www.trumptwitterarchive.com/) is a project th
    
    Clustering Analysis - the tweets will be split into clusters based on its main topic. The cluster might be extracted by a heuristic logic based on a descriptive analysis of tweets or by [Latent Dirichlet allocation (LDA)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) if it is feasible. We can then perform aforementioned temporal analysis for each topic.
    
-- **Does location matter?** 
 
-    Spatial Analysis - based on the topic's cluster, the idea is to analyse how much retweets and likes each topic has by geolocation.
+## Datasets
 
+#### Tweets
 
-## Dataset 
+The Trump Twitter Archive project collects and updates tweets by trump on an hourly basis. 
+The data is available here - [TrumpTwitterArchiveGithub](https://github.com/bpb27/trump_tweet_data_archive). 
+The data is arranged in an yearly fashion into two kinds of `JSONs` - `condensed` and `master` (Eg. - `master_2016.json.zip` and `condensed_2016.json.zip`).
 
-The main dataset with all tweets posted by Trump is available [here](https://github.com/bpb27/trump_tweet_data_archive) 
-since 2009 and the repository is updated every hour. In order to develop this project we will setup an `as-of` to freeze 
-our dataset otherwise each time that the analysis is run, it might give different results. The window time to be 
-analyzed is still undefined because we need to analyse the data beforehand in order to choose a feasible amount of data to deal with in a single machine.
+We will be using the master JSON files which contains the full response from Twitter's API. 
+This will later give us the flexibility to add more analysis or drop some fields, if not required. 
+Note that the JSON file for the year 2017 in the archive keeps changing every hour as it is updated with latest tweets.
 
-In order to work on sentimental analysis, an extra dataset with word scores will be needed. There are a lot available 
-datasets such as [lexicon](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon), 
-[sentiwordnet](http://sentiwordnet.isti.cnr.it/), among others. A list of datasets is also available [here](https://medium.com/@datamonsters/sentiment-analysis-tools-overview-part-1-positive-and-negative-words-databases-ae35431a470c).
+#### Sentimental Scores
 
-
-## A list of internal milestones up until project milestone 2
-
-- Choose the word scores dataset based on the amount of words available and context (what is the context upon which the scores were built).
-- Discover the window time feasible to develop the project in a machine with 8GB of RAM. The period of campaign must be included in this interval.
-- Clean stop words from dataset.
-- Descriptive and exploratory analysis of tweets' text.
-- Check if LDA model is a feasible approach to find topics and then classify tweets.
-- Have a final proposal of the topics that will be analysed to answer the [`Research Questions`](#Research-Questions).
-
-## Questions for TAa
-- Can I put my main function in a python project instead of putting everything in the `jupyter notebook`? So I can write unit tests and also don't turn `jupyter notebook` too dirty 
+VADER (Valence Aware Dictionary and sEntiment Reasoner) is a tool with lexicon for sentimental analysis and it is tunned and performs very well in social media.
+The paper with more informations about who it is calculated and the performance can be found [here](http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3BbAUS6s97R5uxMEV9nK7ePw%3D%3D). 
