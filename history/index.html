@@ -274,12 +274,47 @@
         <h3>
             Topic Modelling
         </h3>
-
-        <ul>
-            <li>Manual assignment of topics to each quarter, compare with news and add snippets</li>
-            <li>Charts - Quarter Cloud</li>
-            <li>Qualitative Textual Description</li>
-        </ul>
+        
+        <p>
+            Trump has had many phases in his life, ranging from being a judge at a reality T.V. show, to being the President of the United States of America. We thought, it would be an interesting exercise to figure out what were the major thematic elements in his tweets through the years. Given his vastly different backgrounds throughout the years, we hoped to find significant differences in the theme of his tweets. And we weren't surprised. The technique used for topic modelling is <a href = 'https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation'>Latent Dirichlet Allocation</a> (LDA). Others like <a href = 'https://en.wikipedia.org/wiki/Non-negative_matrix_factorization'>Non-Negative Matrix Factorization</a> (NMF) and <a href = 'https://en.wikipedia.org/wiki/Hierarchical_Dirichlet_process'>Hierarchical Dirichlet Process</a> (HDP), but LDA's perofrmance yielded the most coherent results.</p>
+        
+        <p>
+            LDA outputs most significant 'n' words for 'm' topics each. Both parameters are chosen by the user. Initially, we took all the tweets for creating the input courpus for LDA. The resulting output was missing some major tweet elements that Trump is known for. For example, 'Hillary Clinton', 'Immigration' were entirely missing!</p>
+        <img src="figures/topic_full_corpus.png" alt="Incoherent Results with Full Corpus">
+        
+        <p>
+            We thought it might be because of the huge time range that we have chosen. We narrowed down next to last three months before the election, when competition between Hillary and Trump as at its peak. And voila! The infamous <a href = 'https://twitter.com/realdonaldtrump/status/931877599034388480?lang=en'>Crooked Hillary</a>, <a href = 'https://twitter.com/realdonaldtrump/status/788928050008207360?lang=en'>BigLeagueTruth</a> and <a href = 'https://twitter.com/realdonaldtrump/status/788955427975393281?lang=en'>MAGA</a> make their appearance.</p>
+        <img src="figures/topic_narrow_corpus.png" alt="Coherent Results with Full Corpus">
+        
+        <p>
+            Better visualization technique for the entire corpus is to divide them into quarters for each year, and then have a look at the word-cloud for topic models. We will be visualizing both the word-cloud and the corresponding news stories from that period of time. <a href = 'https://news.google.com/news/?gl=US&ned=us&hl=en'>Google News</a> was used for the purpose of finding relevant news stories.</p>
+        <p>
+            Topic Word-Cloud :</p>
+        <img src="figures/wordcloud_by_topic.png" alt="Topics by Quarter">
+        
+        <p>
+            After having a look at the word-cloud above, let's validate the results by looking at few news stories from those quarters :</p>
+        <p></p>
+        <figure>
+            <img src="figures/2017Q3.png" alt="2017 Q3" />
+            <figcaption>2017 Third Quarter, Key words - FraudNews, FakeNews</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="figures/2016Q4.png" alt="2016 Q4" />
+            <figcaption>2016 Fourth Quarter, Key words - Big League Truth</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="figures/2016Q1.png" alt="2016 Q1" />
+            <figcaption>2016 First Quarter, Key words - Ted Cruz, Iowa</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="figures/2015Q2.png" alt="2015 Q2" />
+            <figcaption>2015 Second Quarter, Key words - O'Reilly Factor</figcaption>
+        </figure>
+        
 
         <h3>
             Timing
